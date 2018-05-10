@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
+import com.example.demo.entity.User;
 import com.example.demo.redis.RedisClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +49,13 @@ public class RedPacketController {
             System.out.println(value);
         } while ("" != value && null != value);
 
+        User user = new User();
+        user.setId(10);
+        user.setAge(20);
+        user.setName("houlong");
+        boolean result = redisClient.setEntity("user", user);
+
+        System.out.println(((User)redisClient.get("user")).getName());
 
         for (int index = 0; index < 4; index++) {
             int temp = index;

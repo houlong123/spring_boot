@@ -62,6 +62,41 @@ public class RedisClient {
     }
 
     /**
+     * 获取缓存
+     *
+     * @param key
+     * @return
+     */
+    public Object get(final String key) {
+        try {
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            return operations.get(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 写入缓存
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean setEntity(final String key, Object value) {
+        boolean result = false;
+        try {
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            operations.set(key, value);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * 添加zset集合
      * @param key
      * @param value

@@ -1,9 +1,15 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
+
 /**
- * Created by houlong on 2018/5/7.
+ *
+ * @author houlong
+ * @date 2018/5/7
  */
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -1L;
 
     private int id;
     private String name;
